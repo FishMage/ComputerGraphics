@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by anonymous (http://jsbin.com/nahaqakeko/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<body>
+	<canvas id="myCanvas" width="1100" height="1000"></canvas>
+</body>
+<script> "use strict"
+	window.onload = function() {
+			var canvas = document.getElementById('myCanvas');
+		var context = canvas.getContext('2d');
+        var gred = context.createRadialGradient(250,190,1,300,160,150);
+        gred.addColorStop(0,"white");
+        gred.addColorStop(1,"#DE1919");
+	
+      //Draw the W
+      context.beginPath();
+      //bottom
+      context.moveTo(153,140);
+      context.lineTo(150,225);
+      context.quadraticCurveTo(165,219,170,230);
+      context.lineTo(220,350);
+      
+      context.quadraticCurveTo(240,320,280,320);
+      context.lineTo(290,250);
+      context.lineTo(310,315);
+      context.quadraticCurveTo(330,310,370,320);
+      context.lineTo(420,180);
+      context.quadraticCurveTo(425,167,435,167); 
+    
+      context.lineTo(450,85);
+      context.quadraticCurveTo(400,80,355,85);
+      //Top
+      context.lineTo(340,160);
+      context.quadraticCurveTo(355,160,355,170);
+      context.lineTo(335,240);
+      context.lineTo(310,170);
+      context.quadraticCurveTo(310,160,320,160);
+      context.lineTo(333,85);
+      context.quadraticCurveTo(280,85,250,100);
+      context.lineTo(245,170);
+      context.quadraticCurveTo(260,165,260,180);
+      context.lineTo(250,245);
+      context.lineTo(225,180);
+      context.quadraticCurveTo(225,170,233,170);
+      context.lineTo(238,100);
+      context.quadraticCurveTo(190,110,153,140);
+      //context.closePath();
+      //Shadow and color;
+      context.shadowBlur = 5;
+      context.shadowColor = "black";
+      context.shadowOffsetY = 10;
+      context.shadowOffsetX = -10;
+     // context.fillStyle="#DE1919";
+    
+     //context.lineWidth = 3;
+     //context.stroke();
+     //Gradient colorFill  
+      context.fillStyle = gred;
+      context.fill();
+	};
+</script>
+<head>
+  <meta name="description" content="Canvas Drawing Example">
+  <meta charset="utf-8">
+  <title>Canvas Drawing Example</title>
+</head>
+</html>
