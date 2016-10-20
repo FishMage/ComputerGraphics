@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by anonymous (http://jsbin.com/pexuficuda/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+ <canvas id="myCanvas" width="1000" height="500"></canvas>
+	<br/>
+	<input id="slider1" type="range" min="0" max="100" />Wind Speed
+</html>
+<script id="jsbin-javascript">
+function setup() { "use strict";
+  var canvas = document.getElementById('myCanvas');
+  var speed = document.getElementById('slider1');
+  speed.value = 0;
+  var maxRot = 33 / 180 * Math.PI;   // max 25° in both directions
+  var counter = 0;
+   function draw(){
+    var context = canvas.getContext('2d');
+    canvas.width = canvas.width;
+    //Variables
+    //small parts
+    function drawLeaf(){
+      function drawOuterLeaf(){
+        context.beginPath();
+        context.fillStyle = "lightgreen";
+        context.moveTo(0,0);
+        context.quadraticCurveTo(20,60,60,60);
+        context.quadraticCurveTo(60,20,0,0);
+        context.closePath();
+        context.fill();
+        //context.stroke();
+      }
+      function drawInnerLeaf(){
+        context.beginPath();
+        context.moveTo(0,0);
+        context.quadraticCurveTo(10,20,30,30);
+        context.quadraticCurveTo(20,10,0,0);
+        context.closePath();
+        context.fillStyle = "green";
+        context.fill();
+        
+      }
+      drawOuterLeaf();
+      drawInnerLeaf();
+    }
+    function drawBranch(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.lineTo(15,5);
+      context.quadraticCurveTo(90,10,120,20);
+      context.lineTo(130,50);
+      context.lineTo(135,45);
+      context.lineTo(125,20)
+      context.quadraticCurveTo(130,15,160,20);
+      context.lineTo(160,16);
+      context.quadraticCurveTo(120,10,0,0);
+      context.stroke();
+      context.fillStyle = "brown";
+      context.fill();
+    
+      
+      
+    }
+     function drawSmallBranch(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.lineTo(5,5);
+      context.lineTo(40,20);
+       context.lineTo(50,40);
+       context.lineTo(55,35);
+       context.lineTo(46,20);
+       context.lineTo(70,20);
+       context.lineTo(66,15);
+        context.quadraticCurveTo(50,20,0,0);
+      //context.closePath();
+       context.fillStyle = "brown";
+       context.fill()
+       context.stroke();
+       
+       //context.rotate(Math.sin(speed.value*0.005)%10);
+       //window.requestAnimationFrame(drawSmallBranch);
+      // context.restore();
+     }
+      function drawMain(){
+      context.beginPath();
+      context.moveTo(0,160);
+      //context.lineTo(0,160);
+       context.quadraticCurveTo(50,140,60,120);
+       context.lineTo(70,120);
+       context.quadraticCurveTo(50,140,0,200);
+       context.closePath();
+       context.fillStyle = "brown";
+       context.fill()
+      context.stroke();
+      }
+      
+     drawMain();
+    
+     context.translate(60,120);
+     context.rotate(Math.sin(counter)*0.3 * maxRot);
+     context.save();
+      context.rotate(Math.sin(counter)*-0.5 * maxRot);
+     drawLeaf();
+     //first short branch
+     context.rotate(-1.2);
+      context.rotate(Math.sin(counter)*-0.3 * maxRot);
+      drawSmallBranch();
+       context.translate(50,20);
+       context.save();
+       context.rotate(-0.5)
+       context.rotate(Math.sin(counter)*-0.3 * maxRot);
+       drawLeaf();
+     context.restore();
+      context.translate(-2,0);
+       context.save();
+       //drawLeaf();
+     context.restore();
+     context.restore();
+     
+     //second Branch
+    
+     drawBranch();
+     
+    // context.save();
+     context.translate(150,20);
+     context.save();
+      context.rotate(Math.sin(counter)*0.5 * maxRot);
+      window.requestAnimationFrame(draw);
+
+      context.restore();
+     context.translate(-50,-10);
+     context.rotate(Math.sin(counter)*0.5 * maxRot);
+     drawLeaf();
+     context.restore();
+    // context.rotate(Math.sin(counter) * maxRot);
+     context.save();
+     context.rotate(-1.5);
+     context.rotate(Math.sin(counter)*0.5 * maxRot);
+     drawLeaf();
+     context.restore();
+     context.rotate(-1.1);
+     context.scale(0.5,0.5);
+     context.rotate(Math.sin(counter)*0.5 * maxRot);
+     //window.requestAnimationFrame(draw);
+     drawBranch();
+     context.translate(150,20);
+     context.rotate(Math.sin(counter)*0.5 * maxRot);
+     drawLeaf();
+     context.rotate(0.7);
+     context.rotate(Math.sin(counter)*0.5 * maxRot);
+          drawLeaf();
+     context.restore();
+      counter += 0.05;
+      
+   }
+   
+   window.requestAnimationFrame(draw);
+   slider1.addEventListener("input",draw);
+   draw();
+  }
+window.onload = setup;
+</script>

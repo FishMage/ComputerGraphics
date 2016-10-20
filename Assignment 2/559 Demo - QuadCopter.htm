@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://graphics.cs.wisc.edu/Courses/559-f2015/Examples/QuadCopter/quad.html -->
+<html lang="en"><!-- CS559 Program 2 Sample Solution - September, 2015 - Michael Gleicher --><!-- Students may refer to this, but not copy it for their assignments --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>559 Demo - QuadCopter</title>
+</head>
+
+<body>
+<h1>Simple Canvas Quadcopter</h1>
+<canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+
+<br>
+speed: <input id="slider1" type="range" min="0" max="2" step=".2">
+<br>
+
+<!-- the code for the QuadCopter itself is in a script file -->
+<!-- that file has the interesting part of the assignment -->
+<script src="./559 Demo - QuadCopter_files/quadcopter.js"></script>
+<!-- paths give me a way to make something the copter can follow
+  -- but for now, they just go around in circles -->
+<script src="./559 Demo - QuadCopter_files/paths.js"></script>
+<!-- the script that actually does stuff -->
+<script>
+    "use strict";
+    /** sample solution for the CS559 programming assignment 2
+     * students may look at this code, but not copy it verbatim
+     */
+
+    function myApp() {
+        // variables for the "program" - kept inside rather than global
+        var theCanvas;
+        var myContext;
+        // a slider for the speed of the second copter
+        var slider;
+        // keep a list of all the copters - we can add more if we want
+        var theCopters = [];
+
+        // animation loop - clear, update, draw, schedule the next iteration
+        function draw() {
+            myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+            theCopters[1].speed = slider.value;
+            myContext.save();
+            theCopters.forEach(function(c) { c.update();})
+            theCopters.forEach(function(c) { c.draw(); })
+            myContext.restore();
+            window.requestAnimationFrame(draw);
+        }
+
+        // set up the elements
+        theCanvas = document.getElementById('myCanvas');
+        myContext = theCanvas.getContext('2d');
+        slider = document.getElementById("slider1");
+        slider.value = 1;
+
+        // make some copters
+        theCopters.push(new QuadCopter(myContext));
+        theCopters.push(new QuadCopter(myContext,100,100,.5));
+
+        // attach them to paths so they fly around
+        theCopters[0].path = new CirclePath(100,100,50);
+        theCopters[1].path = new CirclePath(250,250,75);
+        draw();
+    }
+
+    // start the program when the window is done loading
+    window.onload=myApp;
+</script>
+
+
+</body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+ <canvas id="myCanvas" width="1000" height="500"></canvas>
+	<br/>
+	<input id="slider1" type="range" min="-100" max="100" />Wind Speed
+<script id="jsbin-javascript">
+function setup() { "use strict";
+  var canvas = document.getElementById('myCanvas');
+  var slider1 = document.getElementById('slider1');
+   function draw(){
+    var context = canvas.getContext('2d');
+    canvas.width = canvas.width;
+    //Variables
+    //small parts
+    function drawLeaf(){
+      function drawOuterLeaf(){
+        context.beginPath();
+        context.fillStyle = "lightgreen";
+        context.moveTo(0,0);
+        context.quadraticCurveTo(20,60,60,60);
+        context.quadraticCurveTo(60,20,0,0);
+        context.closePath();
+        context.fill();
+      }
+      function drawInnerLeaf(){
+        context.beginPath();
+        context.moveTo(0,0);
+        context.quadraticCurveTo(10,20,30,30);
+        context.quadraticCurveTo(20,10,0,0);
+        context.closePath();
+        context.fillStyle = "green";
+        context.fill();
+      }
+      drawOuterLeaf();
+      drawInnerLeaf();
+    }
+    function drawBranch(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.lineTo(15,5);
+      context.quadraticCurveTo(90,10,120,20);
+      context.lineTo(130,50);
+      context.lineTo(135,45);
+      context.lineTo(125,20)
+      context.quadraticCurveTo(130,15,160,20);
+      context.lineTo(160,16);
+      context.quadraticCurveTo(120,10,0,0);
+      context.stroke();
+      context.fillStyle = "brown";
+      context.fill()
+    }
+     function drawSmallBranch(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.lineTo(5,5);
+      context.lineTo(40,20);
+       context.lineTo(50,40);
+       context.lineTo(55,35);
+       context.lineTo(46,20);
+       context.lineTo(70,20);
+       context.lineTo(66,15);
+        context.quadraticCurveTo(50,20,0,0);
+      //context.closePath();
+      context.stroke();
+     }
+      function drawMain(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.LineTo(0,60);
+      context.stroke();
+      }
+       drawSmallBranch();
+     //drawMain();
+     //drawBranch();
+     //drawLeaf();
+   } 
+   draw();
+  }
+window.onload = setup;
+</script>
+
+
+
+<script id="jsbin-source-javascript" type="text/javascript">function setup() { "use strict";
+  var canvas = document.getElementById('myCanvas');
+  var slider1 = document.getElementById('slider1');
+   function draw(){
+    var context = canvas.getContext('2d');
+    canvas.width = canvas.width;
+    //Variables
+    //small parts
+    function drawLeaf(){
+      function drawOuterLeaf(){
+        context.beginPath();
+        context.fillStyle = "lightgreen";
+        context.moveTo(0,0);
+        context.quadraticCurveTo(20,60,60,60);
+        context.quadraticCurveTo(60,20,0,0);
+        context.closePath();
+        context.fill();
+      }
+      function drawInnerLeaf(){
+        context.beginPath();
+        context.moveTo(0,0);
+        context.quadraticCurveTo(10,20,30,30);
+        context.quadraticCurveTo(20,10,0,0);
+        context.closePath();
+        context.fillStyle = "green";
+        context.fill();
+      }
+      drawOuterLeaf();
+      drawInnerLeaf();
+    }
+    function drawBranch(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.lineTo(15,5);
+      context.quadraticCurveTo(90,10,120,20);
+      context.lineTo(130,50);
+      context.lineTo(135,45);
+      context.lineTo(125,20)
+      context.quadraticCurveTo(130,15,160,20);
+      context.lineTo(160,16);
+      context.quadraticCurveTo(120,10,0,0);
+      context.stroke();
+      context.fillStyle = "brown";
+      context.fill()
+    }
+     function drawSmallBranch(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.lineTo(5,5);
+      context.lineTo(40,20);
+       context.lineTo(50,40);
+       context.lineTo(55,35);
+       context.lineTo(46,20);
+       context.lineTo(70,20);
+       context.lineTo(66,15);
+        context.quadraticCurveTo(50,20,0,0);
+      //context.closePath();
+      context.stroke();
+     }
+      function drawMain(){
+      context.beginPath();
+      context.moveTo(0,0);
+      context.LineTo(0,60);
+      context.stroke();
+      }
+       drawSmallBranch();
+     //drawMain();
+     //drawBranch();
+     //drawLeaf();
+   } 
+   draw();
+  }
+window.onload = setup;</script></body>
+</html>
